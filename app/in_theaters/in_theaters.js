@@ -2,11 +2,11 @@
 * @Author: yan7
 * @Date:   2016-07-24 14:54:40
 * @Last Modified by:   yan7
-* @Last Modified time: 2016-07-24 15:32:07
+* @Last Modified time: 2016-07-24 20:56:26
 */
 
-'use strict';
 (function(angular) {
+	'use strict';
 	// 1.0创建正在热映模块
 	var app = angular.module("in_theaters",["ngRoute"]);
 
@@ -22,7 +22,18 @@
 	}])
 
 	// 3.0创建控制器
-	app.controller("in_theatersController", ["$scope", function($scope) {
+	app.controller("in_theatersController", ["$scope", "$http", function($scope, $http) {
+		$scope.loading = true;
+		// 利用postman解析的假数据
+		$scope.data;
+
+    // 利用angular的http发送请求数据
+    // then的第一个参数是成功的回调函数，第二个参数是失败的回调函数
+    $http.get('./in_theaters/in_theaters.json').then(function(response) {
+      // 将请求到的数据通过$scope.data暴露出去
+      $scope.data = response.data;
+    })
+
 
 	}])
 })(angular);
