@@ -51,7 +51,7 @@ function myJsonp(url, arg, fn) {
   var mycallbackName = "jsonp_" + Math.random().toString().substr(2);
 
   window[mycallbackName] = function(data) {
-    fn();
+    fn(data);
     document.body.removeChild(scriptEle);
   }
 
@@ -62,6 +62,18 @@ function myJsonp(url, arg, fn) {
   document.body.appendChild(scriptEle);
     }
 ```
+
+#### 将自己封装jsonp跨域运用到项目中
+1. 先创建一个http-server模块，通过service创建一个服务，将封装的myjsonp函数放进去
+  + 需要注意的是，angular中有自己的全局对象$window，要用这个来代替window
+  + 在index页面中也需要引入这个模块
+2. 接着在需要用到跨域请求数据的模块中注入这个模块,因为需要通过控制器暴露请求到的数据，所以在控制器中也需要注入这个模块。
+3. 因为angular请求数据是异步的，而js执行是同步的，所以angular不能自动检测到数据模型已发生改变并渲染数据。
+4. 所以直接通过`$scope.data = data`不会报错，但angular不会将新的数据模型渲染到页面上.
+5. 要解决这个办法，需要在回调函数的最后面加上`$scope.$apply()`.
+6. 注意：在angular中，但凡是异步操作，都需要`$scope.$apply()`这一句代码。
+
+
 
 
 
