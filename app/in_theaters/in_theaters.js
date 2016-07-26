@@ -2,7 +2,7 @@
 * @Author: yan7
 * @Date:   2016-07-24 14:54:40
 * @Last Modified by:   yan7
-* @Last Modified time: 2016-07-26 14:12:47
+* @Last Modified time: 2016-07-26 16:07:32
 */
 
 (function(angular) {
@@ -49,6 +49,7 @@
 	    	// 这里就需要$apply方法去手动告诉angular数据模型发生改变时重新渲染数据
 	    	// 但凡是异步操作，都需要这一句话
 	        $scope.data = data;
+	        $scope.loading = false;
 	        $scope.$apply();
 	    })
 

@@ -73,6 +73,11 @@ function myJsonp(url, arg, fn) {
 5. 要解决这个办法，需要在回调函数的最后面加上`$scope.$apply()`.
 6. 注意：在angular中，但凡是异步操作，都需要`$scope.$apply()`这一句代码。
 
+#### 在请求数据成功后未返回数据前给页面加上遮罩层
+1. google‘css loading’可以得出很多个css遮罩层，选择其中一种将代码复制进自己的项目即可
+2. 将html贴在数据渲染模板中，自己可以根据需求更改一些css样式。
+3. 给遮罩层div盒子加上`ng-show=loading`,一开始在控制器中设置`$scope.loading = true`,在请求回调函数中设置`$scope.loading = false`，即可实现在加载数据时展现，在数据加载完成后消失.
+
 
 
 
