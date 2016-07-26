@@ -1,10 +1,15 @@
 #Movie Guide
 
+<<<<<<< HEAD
 [**demo**](https://yan7.github.io/MovieGuide/app/index.html)
+=======
+## [**demo**](https://yan7.github.io/MovieGuide/app/index.html)
+>>>>>>> gh-pages
 
 ## 遇到的bug
 
 1. 控制器的写法写错，报bug
+2. 坑爹的豆瓣API还是有次数限制的，有APIkey的话每分钟能访问40次，没有的话每分钟只能访问10次，一不小心就给封ip了，还原DNS缓存也没用，导致工作只能暂停。
 
 ## 理解过程
 
@@ -27,7 +32,44 @@
 4. 将数据保存在一个json文件中，利用ajax请求获取数据并渲染在页面，可以让页面减少很多代码，简洁又实用.
 
 ### 利用jsonp调用豆瓣API完成实时数据渲染
+<<<<<<< HEAD
 1. 由于豆瓣api规定接受的claaback参数只能包含数字、字母、下划线，长度不大于50，所以angular自带的跨域方法jsonp由于callback参数是带有.的，所以在这里直接用jsonp方法调用豆瓣API会失败，必须自己封装一个jsonp跨域方法.
+=======
+
+#### 自己封装jsonp跨域请求函数
+1. 由于豆瓣api规定接受的callback参数只能包含数字、字母、下划线，长度不大于50，所以angular自带的跨域方法jsonp由于callback参数是带有.的，所以在这里直接用jsonp方法调用豆瓣API会失败，必须自己封装一个jsonp跨域方法.
+2. 创建myJsonp函数，其中有三个函数
+	+ url: 请求的路径，这里是豆瓣API的地址;
+	+ arg: 请求的参数，这个参数是由豆瓣API提供的，一个是start：从第几条数据开始返回，count： 返回几条数据;
+	+ fn: 请求成功的回调函数,因为fn是一个匿名函数，所以将其拼接到url中的时候要先给它一个名字mycallbackName.
+3. 首先需要合并参数到url中，这里需要合并arg的参数和angular要求的callback参数,都是使用拼接字符串的方法.
+4. 为了防止调用多次的时候后面的回调函数覆盖了前面的回调函数，这样会使多次请求的数据就都被最后一次请求的数据覆盖了。所以每次都要给fn函数一个随机名字
+5. 为了让mycallbackName可以全局作用，可以让它成为window的一个属性，这样它就是全局作用域了.
+6. 为了避免调用多次之后生成很多个script标签所以要在请求数据成功并返回数据之后移出该script标签，所以把mycallbackName作为一个函数执行，每次请求成功并改回数据后则移除该script标签.
+7. 以下是myJsonp函数的完整代码(注释在源码里有):
+```javascript
+function myJsonp(url, arg, fn) {
+  var queryString = '';
+  for (var key in arg) {
+  	queryString += key + '=' + arg[key] + '&';
+  }
+  url = url + '?' + queryString;
+  var mycallbackName = "jsonp_" + Math.random().toString().substr(2);
+
+  window[mycallbackName] = function(data) {
+    fn();
+    document.body.removeChild(scriptEle);
+  }
+
+  url = url + "callback=" + mycallbackName;
+
+  var scriptEle = document.createElement('script');
+  scriptEle.src = url;
+  document.body.appendChild(scriptEle);
+    }
+```
+
+>>>>>>> gh-pages
 
 
 
