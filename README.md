@@ -1,10 +1,7 @@
 #Movie Guide
 
-<<<<<<< HEAD
-[**demo**](https://yan7.github.io/MovieGuide/app/index.html)
-=======
+
 ## [**demo**](https://yan7.github.io/MovieGuide/app/index.html)
->>>>>>> gh-pages
 
 ## 遇到的bug
 
@@ -32,9 +29,6 @@
 4. 将数据保存在一个json文件中，利用ajax请求获取数据并渲染在页面，可以让页面减少很多代码，简洁又实用.
 
 ### 利用jsonp调用豆瓣API完成实时数据渲染
-<<<<<<< HEAD
-1. 由于豆瓣api规定接受的claaback参数只能包含数字、字母、下划线，长度不大于50，所以angular自带的跨域方法jsonp由于callback参数是带有.的，所以在这里直接用jsonp方法调用豆瓣API会失败，必须自己封装一个jsonp跨域方法.
-=======
 
 #### 自己封装jsonp跨域请求函数
 1. 由于豆瓣api规定接受的callback参数只能包含数字、字母、下划线，长度不大于50，所以angular自带的跨域方法jsonp由于callback参数是带有.的，所以在这里直接用jsonp方法调用豆瓣API会失败，必须自己封装一个jsonp跨域方法.
@@ -69,7 +63,6 @@ function myJsonp(url, arg, fn) {
     }
 ```
 
->>>>>>> gh-pages
 
 
 
