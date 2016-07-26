@@ -26,7 +26,7 @@
 
         // 为了避免调用多次之后生成很多个script标签所以要在请求数据成功并返回数据之后移出该script标签
         window[mycallbackName] = function(data) {
-            fn();
+            fn(data);
             document.body.removeChild(scriptEle); //这里形成的是一个闭包
         }
 
@@ -38,8 +38,6 @@
         var scriptEle = document.createElement('script');
         scriptEle.src = url;
         document.body.appendChild(scriptEle);
-
-
 
 
     }
