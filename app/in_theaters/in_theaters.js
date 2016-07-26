@@ -2,7 +2,7 @@
 * @Author: yan7
 * @Date:   2016-07-24 14:54:40
 * @Last Modified by:   yan7
-* @Last Modified time: 2016-07-24 20:56:26
+* @Last Modified time: 2016-07-25 19:43:00
 */
 
 (function(angular) {
@@ -29,11 +29,17 @@
 
     // 利用angular的http发送请求数据
     // then的第一个参数是成功的回调函数，第二个参数是失败的回调函数
-    $http.get('./in_theaters/in_theaters.json').then(function(response) {
+    // $http.get('./in_theaters/in_theaters.json').then(function(response) {
       // 将请求到的数据通过$scope.data暴露出去
-      $scope.data = response.data;
-    })
+      // $scope.data = response.data;
 
+      //angular中的跨域请求需要加上JSON_CALLBACK参数
+      // 由于angular不支持这种有点的参数，所以不能用angular的jsonp方法，需要自己封装一个跨域请求方法
+      $http.jsonp('http://api.douban.com//v2/movie/in_theaters?JSON_CALLBACK').then(function(data) {
+        console.log(data);
+      })
+
+    // })
 
 	}])
 })(angular);
