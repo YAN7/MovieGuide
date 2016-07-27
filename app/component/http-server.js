@@ -2,7 +2,7 @@
 * @Author: yan7
 * @Date:   2016-07-25 21:38:18
 * @Last Modified by:   yan7
-* @Last Modified time: 2016-07-26 13:55:28
+* @Last Modified time: 2016-07-27 15:07:18
 */
 
 (function(angular) {
@@ -31,10 +31,6 @@
         var scriptEle = $window.document.createElement('script');
         scriptEle.src = url;
         $window.document.body.appendChild(scriptEle);
-
-
-
-
     }
 	}])
 })(angular)
