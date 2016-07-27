@@ -79,6 +79,18 @@ function myJsonp(url, arg, fn) {
 3. 给遮罩层div盒子加上`ng-show=loading`,一开始在控制器中设置`$scope.loading = true`,在请求回调函数中设置`$scope.loading = false`，即可实现在加载数据时展现，在数据加载完成后消失.
 
 
+#### 完成分页功能
+1. 路由规格写成`'/in_theaters/:page?'`表示动态匹配页码，加上？号表示匹配不写页码的情况
+2. 通过豆瓣API提供的start和count参数来控制页码:
+```javascript
+  // 开始进行分页处理
+  var count = 10; // 每页渲染的数据
+  var page = $routeParams.page || '1' - 0; // -0 是为了将page从字符串转为整型
+  var start = (page - 0) * count;
+```
+3. 通过给两个点击按钮加上`ng-class="{'disable': nowPage <= 1}"`或`ng-class="{'disable': nowPage >= maxPage}"`来控制不能点击的效果。
+4. in\_theaters模块做好之后，其它两个模块也是一样的代码，只需要in\_theaters模块赋值黏贴两份，然后把文件名字和代码里面的模块名字和控制器名字改为对应的模块名字就行了。
+
 
 
 
