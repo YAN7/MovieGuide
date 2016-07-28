@@ -2,7 +2,7 @@
  * @Author: yan7
  * @Date:   2016-07-24 14:54:40
  * @Last Modified by:   yan7
- * @Last Modified time: 2016-07-27 19:41:19
+ * @Last Modified time: 2016-07-28 21:12:17
  */
 
 (function(angular) {
@@ -64,7 +64,8 @@
 
             // 使用Myservice服务来请求第三方api
             // 需要动态改变的是这个url的锚点值
-            Myservice.jsonp("https://api.douban.com//v2/movie/" + $routeParams.moduleName, { start: start, count: count }, function(data) {
+            var url = "https://api.douban.com//v2/movie/" + $routeParams.moduleName;
+            Myservice.jsonp(url, { start: start, count: count }, function(data) {
                 // 因为angular请求数据是异步的，而js执行是同步的，所以angular不能自动检测到数据模型已发生改变并渲染数据
                 // 这里就需要$apply方法去手动告诉angular数据模型发生改变时重新渲染数据
                 // 但凡是异步操作，都需要这一句话

@@ -12,12 +12,14 @@
 
 <body ng-app="MovieGuide">
     <!-- 顶部导航栏开始 -->
-    <div class="top">
+    <div class="top" ng-controller='mainController'>
         <div class="header">
             <a href="#/home_page"><img src="assets/img/logo.png" alt=""></a>
             <div class="search">
-                <input class="my-input" type="text" placeholder="电影搜索">
-                <button>搜索</button>
+                <form ng-submit="search()">
+                    <input ng-model='query' class="my-input" type="text" placeholder="电影搜索">
+                    <button>搜索</button>
+                </form>
             </div>
         </div>
         <nav class="nav">
@@ -37,7 +39,10 @@
     </div>
     <footer class="footer">
         <div class="container">
-            <p>版权所有&copy; 前端与移动开发学院 火骑士空空(允许侵权)</p>
+            <p>版权所有&copy; yan7(何宇航)(允许侵权)</p>
+            <p>
+                2016
+            </p>
         </div>
     </footer>
     <script src="assets/js/prefixfree.min.js"></script>
@@ -50,6 +55,8 @@
     <script src="component/http-server.js"></script>
     <script src="component/auto-active.js"></script>
     <script src="home_page/home_page.js"></script>
+    <script src="search/search.js"></script>
+    <script src="details/details.js"></script>
     <script src="app.js"></script>
 </body>
 
