@@ -135,6 +135,7 @@ function myJsonp(url, arg, fn) {
 1. 因为首页是不需要请求豆瓣第三方api的，所以首页的路由匹配规则需要另写.
 2. 新建一个home_page模块即可，匹配成功后插入本地模板.
 3. 需要注意的是，路由匹配遵循先引用先匹配的规则，所以在主模块引用的时候首页模块要写在前面。
+4. 在app.js中使用otherwise来使页面默认跳转到首页.
 
 #### 完成搜索模块
 1. 用form包搜索模块包起来，然后给form一个`ng-submit`一个方法，这个方法会在form提交时会把url的锚点值改为`'/search?q=' + $scope.query`,$scope.query为搜索框内的值.
