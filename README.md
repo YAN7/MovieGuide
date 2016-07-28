@@ -3,13 +3,31 @@
 
 ## [**demo**](https://yan7.github.io/MovieGuide/app/index.html)
 
+## 项目简介
+  这是使用angular构建的一个单页面应用，通过调用豆瓣api实现了实时请求数据，是一个真正可用的电影查询网站.每个功能一个模块，实现了项目的模块化，组件化思想，同时使用了webpack打包项目,使项目更加完整，更接近于实际的工作流程.
+
+## 项目思维导图
+
+<img src="img/MovieGuid.png" alt="">
+
 ## 遇到的bug
 
 1. 控制器的写法写错，报bug
 2. 坑爹的豆瓣API还是有次数限制的，有APIkey的话每分钟能访问40次，没有的话每分钟只能访问10次，一不小心就给封ip了，还原DNS缓存也没用，导致工作只能暂停。
 3. 在本地可以运行的代码，上传到github-pages中展示时显示‘https不能请求’.
-  + 解决办法: github只支持https协议，不支持http协议，所以讲请求的url中的http改为https即可.
+  + solution: github只支持https协议，不支持http协议，所以讲请求的url中的http改为https即可.
 4. 加上搜索模块之后不管点击第几页都是显示的第一页的内容
+  + solution: 首先把search模块分离，不和movie\_list模块共用一个路由，阻断search模块对movie\_list模块的影响。这样movie\_list模块可以正常工作。
+  + 但是search模块的问题依然没有解决，可以得出是search模块传了一个q参数导致start参数永远为0，为什么会出现这个bug，依然没有搞懂。
+  + 总的来说，这个bug只解决了一半，search模块的bug依然没有解决，先把后续工作做完，回头解决这个bug。
+5. 在做详情模块时，遇到匹配成功详情页面的路由之后还会再匹配movie_list模块路由的bug。
+  + solution: 是因为自己在详情模块的发送jsonp请求的时候时候url写错了
+  ```javascript
+  // right
+  https://api.douban.com/v2/movie/subject/' + $routeParams.id
+  //wrong （subject多写了一个s）
+  https://api.douban.com/v2/movie/subjects/' + $routeParams.id
+  ```
 
 ## 理解过程
 
@@ -35,7 +53,7 @@
 
 #### 自己封装jsonp跨域请求函数
 1. 由于豆瓣api规定接受的callback参数只能包含数字、字母、下划线，长度不大于50，所以angular自带的跨域方法jsonp由于callback参数是带有.的，所以在这里直接用jsonp方法调用豆瓣API会失败，必须自己封装一个jsonp跨域方法.
-2. 创建myJsonp函数，其中有三个函数
+2. 创建myJsonp函数，其中有三个参数
 	+ url: 请求的路径，这里是豆瓣API的地址;
 	+ arg: 请求的参数，这个参数是由豆瓣API提供的，一个是start：从第几条数据开始返回，count： 返回几条数据;
 	+ fn: 请求成功的回调函数,因为fn是一个匿名函数，所以将其拼接到url中的时候要先给它一个名字mycallbackName.
@@ -118,3 +136,29 @@ function myJsonp(url, arg, fn) {
 2. 新建一个home_page模块即可，匹配成功后插入本地模板.
 3. 需要注意的是，路由匹配遵循先引用先匹配的规则，所以在主模块引用的时候首页模块要写在前面。
 
+#### 完成搜索模块
+1. 用form包搜索模块包起来，然后给form一个`ng-submit`一个方法，这个方法会在form提交时会把url的锚点值改为`'/search?q=' + $scope.query`,$scope.query为搜索框内的值.
+2. 这个时候就可以用`$routeParams.q`获取到url中q参数的值，然后在发送jsonp请求的url中加上`"?q=" + $routeParams.q`就可以请求到搜索的数据了.
+3. 但是这样会导致一个未知的bug，就是加上搜索模块之后不管点击第几页都是显示的第一页的内容（start的设置失效，总是以0开始）.
+4. 为此只能将搜索模块和movie_list模块分离，阻断搜索模块对movie\_list的影响。
+5. 但是搜索模块的bug依然存在，这个bug暂未解决，留待后续解决.
+
+#### 完成详情模块
+1. 需要单独配置路由,路由规格为`/details/:id`,点击a标签时获取到该条目的id值。
+2. 通过'$scope.data = data'将请求道的数据暴露出去，然后就可以把绑定到路由模板上了.
+3. 如果数据是一个数组，而又需要把元素逐条列出时，可以使用,可以利用数组的join方法：`{{data.countries.join("、")}}`.
+4. 如果数据是一个数组，并且数组的元素是一个对象，那么就需要使用ng-repeat了：`ng-repeat="item in data.directors"`.
+5. 并且要通过`{{$last ? "" : "、"}}`来判断是否是数组的最后一个元素，如果是，则加上一个空字符串，否则加上、来分隔元素.
+
+
+## 项目总结
+1. 项目总共包含home\_page(首页)、movie\_list(电影功能)、search(查询)、details(电影详情)四个功能模块.
+2. 其中movie\_list模块又包含有正在热映、即将上映、TOP250三个功能，它们共享一个路由规则.
+3. 通过调用豆瓣api实现了电影资讯实时查询，已具备一定的实用性.
+4. 在搭建项目构成中，使用的技术有：
+  + 自己封装jsonp函数，通过serverce方法给个模块调用;
+  + 使用ngRoute路由模块的时候配置多个参数，通过$routeParams来调用路由参数;
+  + 在路由模板中使用了多种指令实现了数据绑定;
+  + 每个功能一个模块，实现了项目的模块化，组件化思想;
+  + 使用webpack压缩打包项目，使项目更加完整，更接近于实际的工作流程.
+5. 后续将添加更多更完整的功能，敬请期待.
