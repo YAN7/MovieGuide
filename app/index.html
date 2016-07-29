@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>电影展示</title>
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"> -->
+    <link rel="shortcut icon" type="image/x-icon" href="../img/MovieGuide.ico">
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/wap.css">
+    <link rel="stylesheet" href="../node_modules/swiper/dist/css/swiper.min.css">
+</head>
+
+<body ng-app="MovieGuide">
+    <!-- 顶部导航栏开始 -->
+    <div class="top" ng-controller='mainController'>
+        <div class="header">
+            <!-- <a href="#/home_page"><img src="assets/img/logo.png" alt=""></a> -->
+            <!-- <a href="#/home_page"><img src="../img/logo.jpg" height=55></a> -->
+            <div class="logo">
+                <a href="#/home_page">
+                    <span class="s1">M</span>
+                    <span class="s2">o</span>
+                    <span class="s3">V</span>
+                    <span class="s4">i</span>
+                    <span class="s5">e</span>
+                    <span class="s6">G</span>
+                    <span class="s7">u</span>
+                    <span class="s8">i</span>
+                    <span class="s9">d</span>
+                    <span class="s0">e</span>
+                </a>
+            </div>
+            <div class="search">
+                <form ng-submit="search()">
+                    <input ng-model='query' class="my-input" type="text" placeholder="电影搜索">
+                    <button>搜索</button>
+                </form>
+            </div>
+        </div>
+        <nav class="nav">
+            <ul>
+                <!--li中添加 active 类样式，显示焦点状态。-->
+                <!-- 使用自定义指令来实现焦点状态的变化 -->
+                <li id="home_page" auto-active><a href="#/home_page">首页</a></li>
+                <li auto-active><a href="#/in_theaters">正在热映</a></li>
+                <li auto-active><a href="#/coming_soon">即将上映</a></li>
+                <li auto-active><a href="#/top250">Top250</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="container">
+        <!-- 一行代码已足够 -->
+        <div ng-view></div>
+    </div>
+    <footer class="footer">
+        <div class="container">
+            <p>版权所有&copy; yan7(何宇航)(欢迎侵权)</p>
+            <p>(由于豆瓣API的限制，每分钟不能请求数据超过十次，否则ip会被封，所以请不要频繁刷新，给您带来的不便，深感歉意)</p>
+            <p>
+                2016
+            </p>
+        </div>
+    </footer>
+    <!-- fork me on github -->
+    <!--  <a href="https://github.com/YAN7/MovieGuide" class="github-corner">
+        <svg width="80" height="80" viewBox="0 0 250 250" style="fill:#70B7FD; color:#fff; position: absolute; top: 0; border: 0; right: 0;">
+            <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+            <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+            <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path>
+        </svg>
+    </a> -->
+    <a href="https://your-url" class="github-corner">
+        <svg width="80" height="80" viewBox="0 0 250 250" style="fill:#64CEAA; color:#fff; position: absolute; top: 0; border: 0; right: 0;">
+            <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+            <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+            <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path>
+        </svg>
+    </a>
+    <script src="assets/js/prefixfree.min.js"></script>
+    <script src="../node_modules/angular/angular.min.js"></script>
+    <script src="../node_modules/angular-route/angular-route.min.js"></script>
+    <script src="movie_list/movie_list.js"></script>
+    <script src="component/http-server.js"></script>
+    <script src="component/auto-active.js"></script>
+    <script src="home_page/home_page.js"></script>
+    <script src="search/search.js"></script>
+    <script src="details/details.js"></script>
+    <script src="app.js"></script>
+    <script src="../node_modules/swiper/dist/js/swiper.js"></script>
+    <script>
+    function autoplay() {
+        var mySwiper = new Swiper('.swiper-container', {
+            autoplay: 5000,
+            loop: true,
+            speed: 1000,
+            pagination: '.swiper-pagination',
+            paginationClickable: true,
+            autoplayDisableOnInteraction: false,
+            prevButton: '.swiper-button-prev',
+            nextButton: '.swiper-button-next',
+            effect: 'fade',
+            fade: {
+                crossFade: false,
+            },
+            grabCursor: true,
+        })
+    }
+
+
+    if (location.hash == '#/home_page') {
+        setTimeout(autoplay, 100);
+    }
+
+    // 面向对象
+    function Home(obj) {
+        obj.onclick = function() {
+            setTimeout(autoplay, 100);
+        }
+    }
+
+    var homePage = document.getElementById('home_page');
+    var logo = document.getElementsByClassName('logo')[0];
+
+
+    Home(homePage);
+    Home(logo);
+
+
+
+
+
+
+
+    // }
+    </script>
+</body>
+
+</html>
