@@ -11,11 +11,32 @@ body {
     background: #fff;
 }
 
-.top .header a {
-    width: 150px;
+/* logo */
+.top .header .logo {
     display: inline-block;
-    height: 60px;
+    height: 40px;
+    padding: 5px;
+    margin-left: 20px;
+    margin-top: 8px;
 }
+.top .header .logo>a {
+    display: inline-block;
+    width: 250px;
+    height: 40px;
+}
+.logo span {
+    font: 900 20px/40px "Zapfino";
+}
+.s1 {color: #FCC748; }
+.s2 {color: #81A8F6; }
+.s3 {color: #BADF90; }
+.s4 {color: #F2B88B; }
+.s5 {color: #91E0F1; }
+.s6 {color: #14CDD6; }
+.s7 {color: #F36B6B; }
+.s8 {color: #29DE6B; }
+.s9 {color: #FFF228; }
+.s0 {color: #F78EA6; }
 
 .top .header img {
     width: 100%;
@@ -24,7 +45,7 @@ body {
 }
 
 .top .header .search {
-    margin: 10px 80px 0 0;
+    margin: 15px 80px 0 0;
     float: right;
     width: 250px;
     height: 30px;
@@ -36,7 +57,7 @@ body {
     width: 158px;
     height: 28px;
     float: left;
-    border: 1px solid #07A7E1;
+    border: 1px solid #90EE1A;
     font-size: 14px;
 }
 
@@ -45,13 +66,13 @@ body {
     width: 80px;
     height: 30px;
     border: none;
-    background: #07A7E1;
+    background: #90EE1A;
     color: #fff;
     cursor: pointer;
 }
 
 .top .nav {
-    background: #07A7E1;
+    background: #90EE1A;
 }
 
 .top .nav ul {
@@ -67,7 +88,7 @@ body {
 }
 
 .top .nav ul li.active {
-    background: #0095bb;
+    background: #1BD51A;
 }
 
 .top .nav ul li a {
@@ -77,12 +98,12 @@ body {
 }
 
 .top .nav ul li a:hover {
-    background: #0095bb;
+    background: #1BD51A;
 }
 
 .container {
     min-width: 1040px !important;
-    background: #F5F5F5;
+    background: #F9F9FA;
 }
 
 .container .list {
@@ -165,7 +186,7 @@ body {
 .container .list .paging .next {
     border: none;
     border-radius: 4px;
-    background: #2aabd2;
+    background: #90EE1A;
     width: 100px;
     height: 40px;
     color: #fff;
@@ -866,32 +887,32 @@ body {
   }
 }
 
-/* .spinner {
-  width: 100px;
-  height: 100px;
-  margin: 100px auto;
-  background-color: #1BD6FE;
-
-  border-radius: 100%;
-  -webkit-animation: sk-scaleout 1.0s infinite ease-in-out;
-  animation: sk-scaleout 1.0s infinite ease-in-out;
+/* fork me in github */
+.github-corner:hover .octo-arm {
+    animation: octocat-wave 560ms ease-in-out
 }
 
-@-webkit-keyframes sk-scaleout {
-  0% { -webkit-transform: scale(0) }
-  100% {
-    -webkit-transform: scale(1.0);
-    opacity: 0;
-  }
+@keyframes octocat-wave {
+    0%,
+    100% {
+        transform: rotate(0)
+    }
+    20%,
+    60% {
+        transform: rotate(-25deg)
+    }
+    40%,
+    80% {
+        transform: rotate(10deg)
+    }
 }
 
-@keyframes sk-scaleout {
-  0% {
-    -webkit-transform: scale(0);
-    transform: scale(0);
-  } 100% {
-    -webkit-transform: scale(1.0);
-    transform: scale(1.0);
-    opacity: 0;
-  }
-} */
+@media (max-width:500px) {
+    .github-corner:hover .octo-arm {
+        animation: none
+    }
+    .github-corner .octo-arm {
+        animation: octocat-wave 560ms ease-in-out
+    }
+}
+

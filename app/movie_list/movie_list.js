@@ -1,8 +1,9 @@
  /*
  * @Author: yan7
+ * @Module: movie_list
  * @Date:   2016-07-24 14:54:40
  * @Last Modified by:   yan7
- * @Last Modified time: 2016-07-28 21:12:17
+ * @Last Modified time: 2016-07-29 13:11:28
  */
 
 (function(angular) {

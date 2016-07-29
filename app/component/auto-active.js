@@ -2,7 +2,7 @@
  * @Author: yan7
  * @Date:   2016-07-27 15:53:54
  * @Last Modified by:   yan7
- * @Last Modified time: 2016-07-28 16:50:13
+ * @Last Modified time: 2016-07-29 18:20:30
  */
 
 
@@ -18,7 +18,7 @@
         return {
             link: function(scope, element, attributes) {
                 // scope,暴露数据到模板中使用
-                // element是自定义指令所在标签的jQuite对象
+                // element是自定义指令所在标签的jQlite对象
                 // angular.element
                 // attributes是自定义指令所在标签的所有属性的集合,是一个object对象
 
@@ -51,6 +51,11 @@
 
         }
 
+    }])
+
+    // 创建控制器
+    app.controller("autoController", ['$scope', '$location', function($scope, $location) {
+        $scope.locat = $location;
     }])
 
 

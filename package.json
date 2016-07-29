@@ -5,7 +5,12 @@
   "main": "index.js",
   "dependencies": {
     "angular": "^1.5.3",
-    "angular-route": "^1.5.3"
+    "angular-animate": "^1.5.8",
+    "angular-route": "^1.5.3",
+    "angular-touch": "^1.5.8",
+    "angular-ui-bootstrap": "^2.0.0",
+    "bootstrap": "^3.3.7",
+    "watchjs": "0.0.0"
   },
   "devDependencies": {},
   "scripts": {

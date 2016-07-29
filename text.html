@@ -1,59 +1,42 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>json</title>
+	<title>MoVieGuide</title>
+	<style>
+		.logo {
+			display: inline-block;
+			height: 40px;
+			padding: 5px;
+		}
+		.logo span {
+			font: 900 20px/40px "Zapfino";
+		}
+		.s1 {color: #FCC748; }
+		.s2 {color: #81A8F6; }
+		.s3 {color: #BADF90; }
+		.s4 {color: #F2B88B; }
+		.s5 {color: #91E0F1; }
+		.s6 {color: #14CDD6; }
+		.s7 {color: #F36B6B; }
+		.s8 {color: #29DE6B; }
+		.s9 {color: #FFF228; }
+		.s0 {color: #F78EA6; }
+	</style>
 </head>
 <body>
-	<script>
-		var p=[
-			{
-				'name':'lisi',
-				'items':[
-					{'sta':'ab','data':'123456'},
-					{'sta':'ac','data':'234567'},
-					{'sta':'ad','data':'345678'},
-					{'sta':'ae','data':'456789'}
-				],
-			},
-			{
-				'name':'zhangsan',
-				'items':[
-					{'sta':'wq','data':'345436'},
-					{'sta':'we','data':'678789'},
-					{'sta':'ws','data':'909855'},
-					{'sta':'wa','data':'123567'}
-				]
-			}
-		]
-		var p2= [];
+	<div class="logo">
+		<span class="s1">M</span>
+		<span class="s2">o</span>
+		<span class="s3">V</span>
+		<span class="s4">i</span>
+		<span class="s5">e</span>
+		<span class="s6">G</span>
+		<span class="s7">u</span>
+		<span class="s8">i</span>
+		<span class="s9">d</span>
+		<span class="s0">e</span>
 
-		//p2需要变成下面的样子
-		/*p2=[
-			{'sta':'ab','data':'123456'},
-			{'sta':'ac','data':'234567'},
-			{'sta':'ad','data':'345678'},
-			{'sta':'ae','data':'456789'},
-			{'sta':'wq','data':'345436'},
-			{'sta':'we','data':'678789'},
-			{'sta':'ws','data':'909855'},
-			{'sta':'wa','data':'123567'}
-		]*/
-		var length = 0;
-		for(var i=0;i<p.length;i++){
-			length += p[i].items.length
-		}
-		for(var i=0;i<p.length;i++){
-			for(var j=0; j<p[i].items.length;j++){
-				p2.push({'sta':p[i].items[j].sta,'data':p[i].items[j].data})
-			}
-
-		}
-		// console.log(p[0].items.length);
-		// console.log(length);
-		// console.log(p2.length+"ahahah"+p2[0].sta);
-		for (var i = 0; i <p2.length; i++) {
-			console.log(p2[i]);
-		}
-	</script>
+	</div>
+</body>
+</html>
