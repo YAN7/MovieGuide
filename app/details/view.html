@@ -4,6 +4,7 @@
     <div class="dt-info">
         <div class="dti-i"><img ng-src="{{data.images.large}}" alt=""></div>
         <div class="dti-w">
+            <p><strong>片名：</strong>{{data.title}}</p>
             <p>
                 <strong>导演：</strong>
                 <span ng-repeat="item in data.directors">{{item.name}} {{$last ? "" : "、"}}</span>
@@ -16,7 +17,7 @@
             <p><strong>国家：</strong>{{data.countries.join("、")}}</p>
             <p><strong>评分：</strong>{{data.rating.average}}</p>
             <p><strong>时间：</strong>{{data.year}}</p>
-            <p><strong>又名：</strong>{{data.aka.join("、")}}</p>
+            <!-- <p><strong>又名：</strong>{{data.aka.join("、")}}</p> -->
         </div>
     </div>
     <h3>剧情简介:</h3>

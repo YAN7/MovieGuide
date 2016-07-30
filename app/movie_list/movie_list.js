@@ -3,7 +3,7 @@
  * @Module: movie_list
  * @Date:   2016-07-24 14:54:40
  * @Last Modified by:   yan7
- * @Last Modified time: 2016-07-29 13:11:28
+ * @Last Modified time: 2016-07-30 00:49:41
  */
 
 (function(angular) {
